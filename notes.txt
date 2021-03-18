@@ -82,3 +82,17 @@ console.log(first); // Boston
 console.log(second); // New York
 console.log(fifth); // Hell
 + This is very good when having to deal with tuples
+
+
++ Object Literal Enhancement is just a small nice way to make nicer looking "constructors":
+function skier(name, sound) {
+    return {
+        name,
+        sound,
+        powderYell: function() {
+            let yell = this.sound.toUpperCase();
+            console.log(`${yell}! ${yell}!`);
+        }
+    };
+}
++ Normally, "name: name" would have to be done, but we can simply skip on it, and JS will survive it
