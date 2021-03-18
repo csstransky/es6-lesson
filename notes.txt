@@ -18,3 +18,4 @@ Table that shows you browser compatibility with ES6+
 https://kangax.github.io/compat-table/es6/
 
 + originally, you were stuck with "var", but now there's "let"
++ "const" is used to make immutable variables
