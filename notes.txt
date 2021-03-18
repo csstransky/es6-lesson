@@ -87,6 +87,17 @@ console.log(first); // Boston
 console.log(second); // New York
 console.log(fifth); // Hell
 + This is very good when having to deal with tuples
++ NOTE: Can also be done with objects, where it's most lucrative inside a function's input variables:
+const vacation = {
+    destination: "Croatia",
+    travelers: 2,
+    activity: "swimming",
+    cost: "a lot"
+};
+function marketing({destination, activity}) {
+    return `Come to ${destination} and do some ${activity}`;
+}
+console.log(marketing(vacation));
 
 
 + Object Literal Enhancement is just a small nice way to make nicer looking constructors for Objects:
