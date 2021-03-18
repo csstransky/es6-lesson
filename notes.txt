@@ -216,3 +216,30 @@ let guyList = (dudes) => {
 }
 + It can even look like this with curly braces, BUT there must be no other statements (like in C):
 let guyList = (dudes) => console.log(dudes)
+
++ Arrow Functions are particularly useful when dealing with scope,
+imagine you had to deal with an Object using a ".forEach" loop on one of its attributes:
+let person = {
+    first: "Kely",
+    hobbies: ["dance", "prance", "lance"],
+    printHobbies: function() {
+        let _this = this; // This needs to be done because of scoping issues with ".forEach"
+        this.hobbies.forEach(function (hobby) {
+            let string = `${_this.first} likes to ${hobby}`;
+            console.log(string);
+        });
+    }
+};
++ Arrow Functions let you not have to worry about scope by allowing the Object to be in scope
+of the arrow function (in this case the ".forEach" function)
+let person = {
+    first: "Kely",
+    hobbies: ["dance", "prance", "lance"],
+    printHobbies: function() {
+        // The arrow function helps us keep the object This in scope
+        this.hobbies.forEach((hobby) => {
+            let string = `${this.first} likes to ${hobby}`;
+            console.log(string);
+        });
+    }
+};
