@@ -19,3 +19,13 @@ https://kangax.github.io/compat-table/es6/
 
 + originally, you were stuck with "var", but now there's "let"
 + "const" is used to make immutable variables
+
++ Using String Templates like this:
+console.log("Hello", firstName);
+This will add spaces between words so: "Hello tom" is what will be output
++ Using String Templates with `` is MUCH better because it'll actually grab new lines as well:
+    console.log(`Hi ${firstName}! Thanks!
+        Total: $${price}
+        Shipping: $${shipping}
+        Grand Total: $${price + shipping}`)
+NOTE: It'll grab those tabs as well, so be aware
