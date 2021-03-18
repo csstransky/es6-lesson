@@ -187,3 +187,8 @@ const mtTallac = new Hike(10, 2);
 console.log(mtTallac.lengthInHours); // 5 hours
 mtTallac.setPace = 5;
 console.log(mtTallac.lengthInHours); // 2 hours
+
+
++ String repeat is an interesting function that will repeat the string into a giant string
+let word = "Woo";
+console.log(word.repeat(10)); // WooWooWooWooWooWooWooWooWooWoo
