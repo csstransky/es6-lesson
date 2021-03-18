@@ -155,3 +155,35 @@ class SemiTruck extends Vehicle {
 }
 let groceryStoreSemi = new SemiTruck(18);
 groceryStoreSemi.describeYourself();
+
+
++ There are special "get" and "set" functions built into JS, but it's basically syntactic sugar
+let attendance = {
+    _list: [],
+    set addName(name) {
+        this._list.push(name);
+    },
+    get list() {
+        return this._list.join(", ");
+    }
+};
+attendance.addName = "Guy Man";
+console.log(attendance.list);
+
++ It even works for Classes too:
+class Hike {
+    constructor(distance, pace) {
+        this.distance = distance;
+        this.pace = pace;
+    }
+    set setPace(pace) {
+        this.pace = pace;
+    }
+    get lengthInHours() {
+        return `${this.distance / this.pace} hours`;
+    }
+}
+const mtTallac = new Hike(10, 2);
+console.log(mtTallac.lengthInHours); // 5 hours
+mtTallac.setPace = 5;
+console.log(mtTallac.lengthInHours); // 2 hours
