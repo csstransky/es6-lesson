@@ -40,3 +40,23 @@ const courseInfo = {
 courseInfo[id] = 4123;
 console.log(courseInfo); // No issues, id still exists
 console.log(courseInfo[id]); // Will actually show 4123 correctly
+
+
++ Difference between Map and Object
+Map: key value pairs, cannot use "." like an object, have to use ".get" and ".set"
+Object: more generic that allows for "." to work
+Map
+let course = new Map();
+course.set("react", { description: "ui" });
+console.log(course.react.description); // BAD, you cannot do this
+console.log(course.get("react").description); // GOOD, this is how to treat a map
++ QUIRKS: JS will iterate through a map based on insertion order, important to note
++ In a way, think of JS Map() as a ordered dictionary/hashmap
++ Here's how to init a Map if ever needed (The interesting thing is that it uses array annotation, kinda):
+let details = new Map([
+    // Interesting thing to note, you can add as much as you like after the first 2 elements,
+    // but JS will completely IGNORE them
+    [new Date(), "today", "hello", 3749834753908734087],
+    [2, { javascript: ["js", "node", "react"] }],
+    ["items", [1, 2]]
+]);
