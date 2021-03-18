@@ -112,3 +112,24 @@ function skier(name, sound) {
     };
 }
 + Normally, "name: name" would have to be done, but we can simply skip on it, and JS will survive it
+
+
+
++ "forEach" is only used for Arrays, Maps, and Sets
+const arr = ['cat', 'dog', 'fish'];
+arr.forEach(element => {
+  console.log(element);
+});
++ for...in is used for objects, and will include keys that are added onto the Object
+for (variable in object) {
+  // do something
+}
++ for...of is used for iterables like Arrays, Maps, and Sets; DOES NOT WORK ON OBJECTS
+let topics = ["JavaScript", "Node", "CSS"];
+for (let topic of topics) {
+    console.log(topic);
+}
+let topics2 = new Map([["HTML", "/topic/html"], ["CSS", "/topic/css"], ["JavaScript", "/topic/javascript"]]);
+for (let [key, value] of topics2.entries()) {
+    console.log(`${key} is a thing here: ${value}`);
+}
