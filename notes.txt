@@ -1,0 +1,19 @@
+1995 JS was created by a guy from Netscape (in a week lol)
+
+European Computer Manufacturers Association
+ECMAScript 1 - 1997
+ECMAScript 2 - 1998
+ECMAScript 3 - 1999
+ECMAScript 4 - n/a
+ECMAScript 5 - 2009
+ECMAScript 6 - 2015
+
+EMCAScript Website
+ecma-international.org
+
+ECMAScript repo:
+github.com/tc39
+
+Table that shows you browser compatibility with ES6+
+https://kangax.github.io/compat-table/es6/
+
