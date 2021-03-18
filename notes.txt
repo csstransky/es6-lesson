@@ -192,3 +192,13 @@ console.log(mtTallac.lengthInHours); // 2 hours
 + String repeat is an interesting function that will repeat the string into a giant string
 let word = "Woo";
 console.log(word.repeat(10)); // WooWooWooWooWooWooWooWooWooWoo
+
+
++ JS has default values for function input variables
+function add(x = 5, y = 6) {
+    console.log(x + y);
+}
++ You use them as you would imagine, but the cool thing is that you can pass in "undefined" to still use the defaults
+add(1, 2); // 3
+add(1); // 7
+add(undefined, 3); // 8, NOT 9
