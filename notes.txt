@@ -29,3 +29,14 @@ This will add spaces between words so: "Hello tom" is what will be output
         Shipping: $${shipping}
         Grand Total: $${price + shipping}`)
 NOTE: It'll grab those tabs as well, so be aware
+
+
++ A Symbol() is used to add to a Map without any naming conflicts
+const id = Symbol();
+const courseInfo = {
+    title: "JavaScript",
+    id: "js-course"
+};
+courseInfo[id] = 4123;
+console.log(courseInfo); // No issues, id still exists
+console.log(courseInfo[id]); // Will actually show 4123 correctly
