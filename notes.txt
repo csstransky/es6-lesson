@@ -202,3 +202,17 @@ function add(x = 5, y = 6) {
 add(1, 2); // 3
 add(1); // 7
 add(undefined, 3); // 8, NOT 9
+
+
+
++ Arrow Functions:
++ Here's the old way of making functions
+let studentList = function(students) {
+    console.log(students);
+};
++ Here's the new cool way with an arrow function, get rid of "function" and just point:
+let guyList = (dudes) => {
+    console.log(dudes)
+}
++ It can even look like this with curly braces, BUT there must be no other statements (like in C):
+let guyList = (dudes) => console.log(dudes)
