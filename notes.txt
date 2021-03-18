@@ -243,3 +243,16 @@ let person = {
         });
     }
 };
+
+
++ Generators let you pause the function in the middle of its operation
++ For all intents and purposes, imagine as it's a "breakpoint" in the code where you continue with ".next"
+function* director() {
+    yield "Wait";
+    console.log("It's happening!");
+}
+let guy = director();
+guy.next(); // Nothing prints
+guy.next(); // Now it prints
++ You can also use the ".next().done" value to see if it's done:
+console.log(guy.next().done == true)
