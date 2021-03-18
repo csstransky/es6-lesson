@@ -74,6 +74,11 @@ let animals = ["Rover", "Brown", ...cats]
 console.log(animals)
 + Ieva and Sasha get added right to the end of the array instead of becoming nested (like: [r, b, [i, s]]
 really nice syntactic sugar that makes appending arrays MUCH nicer
++ NOTE: This can actually be done for objects as well:
+const backpackingMeals = {
+    ...daytime,
+    nighttime
+};
 
 
 + Array destructing is very similar to having multiple variables on a line (like in Python)
@@ -84,7 +89,7 @@ console.log(fifth); // Hell
 + This is very good when having to deal with tuples
 
 
-+ Object Literal Enhancement is just a small nice way to make nicer looking "constructors":
++ Object Literal Enhancement is just a small nice way to make nicer looking constructors for Objects:
 function skier(name, sound) {
     return {
         name,
