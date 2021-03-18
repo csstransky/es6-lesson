@@ -256,3 +256,19 @@ guy.next(); // Nothing prints
 guy.next(); // Now it prints
 + You can also use the ".next().done" value to see if it's done:
 console.log(guy.next().done == true)
+
+
++ Promises are used to keep track of when something happens THEN you do something in return
++ Here's a super simple example using a timeout:
+const delay = (seconds) =>
+    new Promise((resolve, reject) => {
+            if (typeof seconds !== "number") {
+                reject(new Error("Seconds must be a number!"));
+            }
+            setTimeout(resolve, seconds * 1000);
+    });
+console.log("Zero seconds");
+// "then()" is used when the promise is made, and what's going to execute when it's go time
+delay(1).then(() => console.log("One second"));
++ Promises even come with their own error handling which is pretty useful
+delay("numberlol").then(() => console.log("won't work lol")) // This will throw an Error instead
