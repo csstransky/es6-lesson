@@ -66,3 +66,11 @@ let details = new Map([
 + Even if you were to add duplicates, they'll just be ignored
 + It seems like the biggest function for a Set is obviously ".has"
 + To iterate, you cannot do ".map", you must use ".forEach"
+
++ Spear operator "..." allows elements in an array to either become separate arguments in a function,
+or even just separate elements in an array literal:
+let cats = ["Ieva", "Sasha"];
+let animals = ["Rover", "Brown", ...cats]
+console.log(animals)
++ Ieva and Sasha get added right to the end of the array instead of becoming nested (like: [r, b, [i, s]]
+really nice syntactic sugar that makes appending arrays MUCH nicer
