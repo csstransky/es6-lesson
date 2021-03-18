@@ -15,3 +15,12 @@ let coolSkiVan = new Vehicle("cool ski van", 4);
 
 console.log(coolSkiVan);
 coolSkiVan.describeYourself();
+
+class SemiTruck extends Vehicle {
+  constructor(wheels) {
+    super("semi truck", wheels);
+  }
+}
+
+let groceryStoreSemi = new SemiTruck(18);
+groceryStoreSemi.describeYourself();

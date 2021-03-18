@@ -133,3 +133,25 @@ let topics2 = new Map([["HTML", "/topic/html"], ["CSS", "/topic/css"], ["JavaScr
 for (let [key, value] of topics2.entries()) {
     console.log(`${key} is a thing here: ${value}`);
 }
+
+
++ JS does seem to NOW have classes with the syntax below, they even have inheritance:
+class Vehicle {
+  constructor(description, wheels) {
+    this.description = description;
+    this.wheels = wheels;
+  }
+  describeYourself() {
+    console.log(`I am a ${this.description} with ${this.wheels} wheels.`);
+  }
+}
+let coolSkiVan = new Vehicle("cool ski van", 4);
+coolSkiVan.describeYourself();
+
+class SemiTruck extends Vehicle {
+  constructor(wheels) {
+    super("semi truck", wheels);
+  }
+}
+let groceryStoreSemi = new SemiTruck(18);
+groceryStoreSemi.describeYourself();
