@@ -60,3 +60,9 @@ let details = new Map([
     [2, { javascript: ["js", "node", "react"] }],
     ["items", [1, 2]]
 ]);
+
+
++ Sets are collections of values that can be of any type, BUT THEY MUST BE UNIQUE
++ Even if you were to add duplicates, they'll just be ignored
++ It seems like the biggest function for a Set is obviously ".has"
++ To iterate, you cannot do ".map", you must use ".forEach"
