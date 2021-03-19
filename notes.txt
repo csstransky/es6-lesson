@@ -295,3 +295,11 @@ printFetchData(api)
 + Thankfully though, ES7 changed this to allow the use of "await" for fetch itself:
 let response = await fetch(api);
 console.log("response", response.json());
+
+
++ Getting a little ahead of myself, "async" and "await" are used to deal with asynchronous functions
+const countToOne = async () => {
+    console.log("zero seconds");
+    await delay(1);
+    console.log("one second");
+}
