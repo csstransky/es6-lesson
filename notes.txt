@@ -272,3 +272,26 @@ console.log("Zero seconds");
 delay(1).then(() => console.log("One second"));
 + Promises even come with their own error handling which is pretty useful
 delay("numberlol").then(() => console.log("won't work lol")) // This will throw an Error instead
+
+
++ "fetch" is a nicer way to grab from APIs by using Promises, example:
+let getSpacePeople = (api) => fetch(api).then((res) => res.json());
+getSpacePeople(api).then((data) => console.log("getSpacePeople", data));
+
++ Of course, pay close attention that "fetch" is ASYNCHRONOUS because it's a Promise, so if you want
+data, you'll have to manipulate it with ".then" right there
++ There are workarounds for getting API data from a fetch, but it's not too attractive,
+such as wrapping the entire operation around in an async function to allow "await" to happen:
+async function printFetchData(api) {
+  let spacePeople = []
+  await fetch(api)
+      .then((res) => res.json())
+      .then((json) => json.people)
+      .then((names) => spacePeople = names);
+  console.log("spacePeople:", spacePeople)
+}
+printFetchData(api)
+
++ Thankfully though, ES7 changed this to allow the use of "await" for fetch itself:
+let response = await fetch(api);
+console.log("response", response.json());
