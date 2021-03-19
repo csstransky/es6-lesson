@@ -2,9 +2,39 @@
 <html>
   <head>
     <title>ECMAScript</title>
+    <style>
+      #box {
+        display: flex;
+        justify-content: space-around;
+      }
+      #box > div {
+        height: 5em;
+        width: 5em;
+        background-color: aquamarine;
+      }
+    </style>
   </head>
   <body>
-    <h1>Let</h1>
-    <script type="text/javascript"></script>
+    <h1>Let2</h1>
+    <div id="box"></div>
+    <script type="text/javascript">
+      var div;
+      var box = document.getElementById("box");
+      for (let ii = 0; ii < 5; ii++) {
+        div = document.createElement("div");
+        div.onclick = function() {
+          alert("This is box # " + ii);
+        }
+        box.appendChild(div);
+    }
+
+      var topic = "JavaScript";
+      if (topic) {
+        let topic = "ECMAScript";
+        console.log("block", topic);
+      }
+      console.log("global");
+    </script>
+    <p>hello</p>
   </body>
 </html>

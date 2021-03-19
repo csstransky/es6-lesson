@@ -17,3 +17,289 @@ github.com/tc39
 Table that shows you browser compatibility with ES6+
 https://kangax.github.io/compat-table/es6/
 
++ originally, you were stuck with "var", but now there's "let"
++ "const" is used to make immutable variables
+
++ Using String Templates like this:
+console.log("Hello", firstName);
+This will add spaces between words so: "Hello tom" is what will be output
++ Using String Templates with `` is MUCH better because it'll actually grab new lines as well:
+    console.log(`Hi ${firstName}! Thanks!
+        Total: $${price}
+        Shipping: $${shipping}
+        Grand Total: $${price + shipping}`)
+NOTE: It'll grab those tabs as well, so be aware
+
+
++ A Symbol() is used to add to a Map without any naming conflicts
+const id = Symbol();
+const courseInfo = {
+    title: "JavaScript",
+    id: "js-course"
+};
+courseInfo[id] = 4123;
+console.log(courseInfo); // No issues, id still exists
+console.log(courseInfo[id]); // Will actually show 4123 correctly
+
+
++ Difference between Map and Object
+Map: key value pairs, cannot use "." like an object, have to use ".get" and ".set"
+Object: more generic that allows for "." to work
+Map
+let course = new Map();
+course.set("react", { description: "ui" });
+console.log(course.react.description); // BAD, you cannot do this
+console.log(course.get("react").description); // GOOD, this is how to treat a map
++ QUIRKS: JS will iterate through a map based on insertion order, important to note
++ In a way, think of JS Map() as a ordered dictionary/hashmap
++ Here's how to init a Map if ever needed (The interesting thing is that it uses array annotation, kinda):
+let details = new Map([
+    // Interesting thing to note, you can add as much as you like after the first 2 elements,
+    // but JS will completely IGNORE them
+    [new Date(), "today", "hello", 3749834753908734087],
+    [2, { javascript: ["js", "node", "react"] }],
+    ["items", [1, 2]]
+]);
+
+
++ Sets are collections of values that can be of any type, BUT THEY MUST BE UNIQUE
++ Even if you were to add duplicates, they'll just be ignored
++ It seems like the biggest function for a Set is obviously ".has"
++ To iterate, you cannot do ".map", you must use ".forEach"
+
++ Spread operator "..." allows elements in an array to either become separate arguments in a function,
+or even just separate elements in an array literal:
+let cats = ["Ieva", "Sasha"];
+let animals = ["Rover", "Brown", ...cats]
+console.log(animals)
++ Ieva and Sasha get added right to the end of the array instead of becoming nested (like: [r, b, [i, s]]
+really nice syntactic sugar that makes appending arrays MUCH nicer
++ NOTE: This can actually be done for objects as well:
+const backpackingMeals = {
+    ...daytime,
+    nighttime
+};
+
+
++ Array destructing is very similar to having multiple variables on a line (like in Python)
+let [first, second,,,fifth] = ["Boston", "New York", "London", "Portland", "Hell"];
+console.log(first); // Boston
+console.log(second); // New York
+console.log(fifth); // Hell
++ This is very good when having to deal with tuples
++ NOTE: Can also be done with objects, where it's most lucrative inside a function's input variables:
+const vacation = {
+    destination: "Croatia",
+    travelers: 2,
+    activity: "swimming",
+    cost: "a lot"
+};
+function marketing({destination, activity}) {
+    return `Come to ${destination} and do some ${activity}`;
+}
+console.log(marketing(vacation));
+
+
++ Object Literal Enhancement is just a small nice way to make nicer looking constructors for Objects:
+function skier(name, sound) {
+    return {
+        name,
+        sound,
+        powderYell: function() {
+            let yell = this.sound.toUpperCase();
+            console.log(`${yell}! ${yell}!`);
+        }
+    };
+}
++ Normally, "name: name" would have to be done, but we can simply skip on it, and JS will survive it
+
+
+
++ "forEach" is only used for Arrays, Maps, and Sets
+const arr = ['cat', 'dog', 'fish'];
+arr.forEach(element => {
+  console.log(element);
+});
++ for...in is used for objects, and will include keys that are added onto the Object
+for (variable in object) {
+  // do something
+}
++ for...of is used for iterables like Arrays, Maps, and Sets; DOES NOT WORK ON OBJECTS
+let topics = ["JavaScript", "Node", "CSS"];
+for (let topic of topics) {
+    console.log(topic);
+}
+let topics2 = new Map([["HTML", "/topic/html"], ["CSS", "/topic/css"], ["JavaScript", "/topic/javascript"]]);
+for (let [key, value] of topics2.entries()) {
+    console.log(`${key} is a thing here: ${value}`);
+}
+
+
++ JS does seem to NOW have classes with the syntax below, they even have inheritance:
+class Vehicle {
+  constructor(description, wheels) {
+    this.description = description;
+    this.wheels = wheels;
+  }
+  describeYourself() {
+    console.log(`I am a ${this.description} with ${this.wheels} wheels.`);
+  }
+}
+let coolSkiVan = new Vehicle("cool ski van", 4);
+coolSkiVan.describeYourself();
+
+class SemiTruck extends Vehicle {
+  constructor(wheels) {
+    super("semi truck", wheels);
+  }
+}
+let groceryStoreSemi = new SemiTruck(18);
+groceryStoreSemi.describeYourself();
+
+
++ There are special "get" and "set" functions built into JS, but it's basically syntactic sugar
+let attendance = {
+    _list: [],
+    set addName(name) {
+        this._list.push(name);
+    },
+    get list() {
+        return this._list.join(", ");
+    }
+};
+attendance.addName = "Guy Man";
+console.log(attendance.list);
+
++ It even works for Classes too:
+class Hike {
+    constructor(distance, pace) {
+        this.distance = distance;
+        this.pace = pace;
+    }
+    set setPace(pace) {
+        this.pace = pace;
+    }
+    get lengthInHours() {
+        return `${this.distance / this.pace} hours`;
+    }
+}
+const mtTallac = new Hike(10, 2);
+console.log(mtTallac.lengthInHours); // 5 hours
+mtTallac.setPace = 5;
+console.log(mtTallac.lengthInHours); // 2 hours
+
+
++ String repeat is an interesting function that will repeat the string into a giant string
+let word = "Woo";
+console.log(word.repeat(10)); // WooWooWooWooWooWooWooWooWooWoo
+
+
++ JS has default values for function input variables
+function add(x = 5, y = 6) {
+    console.log(x + y);
+}
++ You use them as you would imagine, but the cool thing is that you can pass in "undefined" to still use the defaults
+add(1, 2); // 3
+add(1); // 7
+add(undefined, 3); // 8, NOT 9
+
+
+
++ Arrow Functions:
++ Here's the old way of making functions
+let studentList = function(students) {
+    console.log(students);
+};
++ Here's the new cool way with an arrow function, get rid of "function" and just point:
+let guyList = (dudes) => {
+    console.log(dudes)
+}
++ It can even look like this with curly braces, BUT there must be no other statements (like in C):
+let guyList = (dudes) => console.log(dudes)
+
++ Arrow Functions are particularly useful when dealing with scope,
+imagine you had to deal with an Object using a ".forEach" loop on one of its attributes:
+let person = {
+    first: "Kely",
+    hobbies: ["dance", "prance", "lance"],
+    printHobbies: function() {
+        let _this = this; // This needs to be done because of scoping issues with ".forEach"
+        this.hobbies.forEach(function (hobby) {
+            let string = `${_this.first} likes to ${hobby}`;
+            console.log(string);
+        });
+    }
+};
++ Arrow Functions let you not have to worry about scope by allowing the Object to be in scope
+of the arrow function (in this case the ".forEach" function)
+let person = {
+    first: "Kely",
+    hobbies: ["dance", "prance", "lance"],
+    printHobbies: function() {
+        // The arrow function helps us keep the object This in scope
+        this.hobbies.forEach((hobby) => {
+            let string = `${this.first} likes to ${hobby}`;
+            console.log(string);
+        });
+    }
+};
+
+
++ Generators let you pause the function in the middle of its operation
++ For all intents and purposes, imagine as it's a "breakpoint" in the code where you continue with ".next"
+function* director() {
+    yield "Wait";
+    console.log("It's happening!");
+}
+let guy = director();
+guy.next(); // Nothing prints
+guy.next(); // Now it prints
++ You can also use the ".next().done" value to see if it's done:
+console.log(guy.next().done == true)
+
+
++ Promises are used to keep track of when something happens THEN you do something in return
++ Here's a super simple example using a timeout:
+const delay = (seconds) =>
+    new Promise((resolve, reject) => {
+            if (typeof seconds !== "number") {
+                reject(new Error("Seconds must be a number!"));
+            }
+            setTimeout(resolve, seconds * 1000);
+    });
+console.log("Zero seconds");
+// "then()" is used when the promise is made, and what's going to execute when it's go time
+delay(1).then(() => console.log("One second"));
++ Promises even come with their own error handling which is pretty useful
+delay("numberlol").then(() => console.log("won't work lol")) // This will throw an Error instead
+
+
++ "fetch" is a nicer way to grab from APIs by using Promises, example:
+let getSpacePeople = (api) => fetch(api).then((res) => res.json());
+getSpacePeople(api).then((data) => console.log("getSpacePeople", data));
+
++ Of course, pay close attention that "fetch" is ASYNCHRONOUS because it's a Promise, so if you want
+data, you'll have to manipulate it with ".then" right there
++ There are workarounds for getting API data from a fetch, but it's not too attractive,
+such as wrapping the entire operation around in an async function to allow "await" to happen:
+async function printFetchData(api) {
+  let spacePeople = []
+  await fetch(api)
+      .then((res) => res.json())
+      .then((json) => json.people)
+      .then((names) => spacePeople = names);
+  console.log("spacePeople:", spacePeople)
+}
+printFetchData(api)
+
++ Thankfully though, ES7 changed this to allow the use of "await" for fetch itself:
+let response = await fetch(api);
+console.log("response", response.json());
+
+
++ Getting a little ahead of myself, "async" and "await" are used to deal with asynchronous functions
+const countToOne = async () => {
+    console.log("zero seconds");
+    await delay(1);
+    console.log("one second");
+}
